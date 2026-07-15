@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import signup from '../screen/signup';
 import forgotpassword from '../screen/forgotpassword';
 import product from '../screen/product';
-import tabnavigation from './tabnavigation';
 import TabNavigation from './tabnavigation';
 
 const Stack = createNativeStackNavigator();

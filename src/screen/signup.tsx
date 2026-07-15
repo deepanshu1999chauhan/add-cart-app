@@ -7,8 +7,13 @@ const Signup = ({ navigation }: { navigation: any }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-
   const handleSignup = async () => {
+
+    if (!fullName || !email || !phone || !password) {
+      Alert.alert('Error', 'Please fill all fields');
+      return;
+    }
+
     try {
       const userData = {
         fullName,
@@ -20,10 +25,10 @@ const Signup = ({ navigation }: { navigation: any }) => {
       await AsyncStorage.setItem('user', JSON.stringify(userData));
 
       const savedData = await AsyncStorage.getItem('user');
-      console.log('Saved Data =>', savedData);
 
+      console.log('Saved Data =>', savedData);
       Alert.alert('Success', 'Signup Successful');
-      navigation.replace('MainApp')
+      navigation.replace('MainApp');
     } catch (error) {
       console.log('Signup Error =>', error);
     }

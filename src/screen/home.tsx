@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Image }
 import React, { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home = ({ navigation }: { navigation: any }) => {
 
@@ -56,12 +57,11 @@ const Home = ({ navigation }: { navigation: any }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
 
       <FlatList
         data={products}
         numColumns={2}
-        contentContainerStyle={{ marginTop: 30 }}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
@@ -99,7 +99,7 @@ const Home = ({ navigation }: { navigation: any }) => {
                               ? { ...p, quantity: (p.quantity ?? 1) - 1 }
                               : p
                           )
-                          .filter(p => (p.quantity ?? 1) > 0) 
+                          .filter(p => (p.quantity ?? 1) > 0)
                       );
                     }}
                   >
@@ -149,14 +149,14 @@ const Home = ({ navigation }: { navigation: any }) => {
         }}
       />
 
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 10,
     backgroundColor: '#96B8FA',
   },
   card: {
